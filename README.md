@@ -8,7 +8,7 @@ Base URL `/api/auth`
 | HTTP Method 	| URI path      	   | Description              |
 |-------------	|---------------	   |--------------------------|
 | POST         	| `/login`             | Login user               |
-| POST         	| `/singup`            | Singup  user             |
+| POST         	| `/signup`            | Singup  user             |
 | GET         	| `/verify`            | Verify auth token        |
 
 

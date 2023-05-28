@@ -42,7 +42,8 @@ const placeSchema = new Schema(
     myOpinion: {
       type: String,
       trim: true,
-      required: [true, 'Your opinion is required.']
+      required: [true, 'Your opinion is required.'],
+      minlength: [15, 'The opinion must have a minimum of 15 characters.']
     },
     owner: {
       type: Schema.Types.ObjectId,
