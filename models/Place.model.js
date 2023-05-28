@@ -1,26 +1,66 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
-const userSchema = new Schema(
+const placeSchema = new Schema(
   {
-    email: {
-      type: String,
-      required: [true, 'Email is required.'],
-      unique: true,
-      lowercase: true,
-      trim: true
+    placeId: {
+      type: String
     },
-    password: {
+    name: {
       type: String,
-      required: [true, 'Password is required.']
-    }
+      required: [true, 'Name is required.']
+    },
+    description: {
+      type: String
+    },
+    placeImg: {
+      type: String
+    },
+    photoReference: [String],//preguntar si creamos otra propiedad donde guardemos la foto, para no hacer tantas llamadas a la api
+    type: {
+      enum: ['Night', 'Parks and gardens', 'Bar', 'Restaurant', 'Theatre', 'Cinema', 'Exposition', 'Interest point']
+    },
+    phone: {
+      type: String
+    },
+    weekDay: [String],
+    city: {
+      type: String
+    },
+    address: {
+      type: String
+    },
+    location: {
+      type: {
+        type: String
+      },
+      coordinates: [Number]
+    },
+    myRating: {
+      type: Number,
+      required: [true, 'Rating is required.']
+    },
+    myOpinion: {
+      type: String,
+      trim: true,
+      required: [true, 'Your opinion is required.']
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+      }
+    ]
+
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true
   }
 );
 
-const User = model("User", userSchema);
+const Place = model("Place", placeSchema);
 
-module.exports = User;
+module.exports = Place;
