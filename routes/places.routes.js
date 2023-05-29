@@ -1,40 +1,18 @@
 const router = require("express").Router()
+const {getAllPlaces, createPlace, getOnePlace, editPlace, addFavouritesPlace, deletePlace} = require('../controllers/places.controllers')
 
-router.get('/getAllPlaces', (req, res, next) => {
 
-    res.json("PLACES soy /getAllPlaces")
+router.get('/getAllPlaces', getAllPlaces)
 
-})
+router.post('/createPlace', createPlace)
 
-router.post('/createPlace', (req, res, next) => {
+router.get('/:id', getOnePlace)
 
-    res.json("PLACES soy /createPlace")
+router.put('/:id/edit', editPlace)
 
-})
+router.post('/:id/favourites', addFavouritesPlace)
 
-router.get('/:id', (req, res, next) => {
-
-    res.json("PLACES soy /:id`")
-
-})
-
-router.put('/:id/edit', (req, res, next) => {
-
-    res.json("PLACES soy /:id/edit")
-
-})
-
-router.post('/:id/favourites', (req, res, next) => {
-
-    res.json("PLACES soy /:id/favourites")
-
-})
-
-router.delete('/:id/delete', (req, res, next) => {
-
-    res.json("PLACES soy /:id/delete")
-
-})
+router.delete('/:id/delete', deletePlace)
 
 
 module.exports = router

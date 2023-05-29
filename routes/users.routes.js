@@ -1,28 +1,14 @@
 const router = require("express").Router()
+const {getAllUsers, getOneUser, editUser, deleteUser} = require('../controllers/users.controllers')
 
-router.get('/getAllUsers', (req, res, next) => {
 
-    res.json("soy api/users/getAllUsers")
+router.get('/getAllUsers', getAllUsers)
 
-})
+router.get('/:id', getOneUser)
 
-router.get('/:id', (req, res, next) => {
+router.put('/:id/edit', editUser)
 
-    res.json("soy api/users/:id")
-
-})
-
-router.put('/:id/edit', (req, res, next) => {
-
-    res.json("soy api/users/edit")
-
-})
-
-router.delete('/:id/delete', (req, res, next) => {
-
-    res.json("soy api/users/delete")
-
-})
+router.delete('/:id/delete', deleteUser)
 
 
 module.exports = router

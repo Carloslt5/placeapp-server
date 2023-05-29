@@ -1,22 +1,12 @@
 const router = require("express").Router()
+const { createComment, editComment, deleteComment } = require('../controllers/comments.controllers')
 
-router.post('/create', (req, res, next) => {
 
-    res.json("soy api/comments/create")
+router.post('/create', createComment)
 
-})
+router.put('/:id/edit', editComment)
 
-router.put('/:id/edit', (req, res, next) => {
-
-    res.json("soy api/comments/:id/edit")
-
-})
-
-router.delete('/:id/edit', (req, res, next) => {
-
-    res.json("soy api/comments/:id/delete")
-
-})
+router.delete('/:id/delete', deleteComment)
 
 
 module.exports = router
