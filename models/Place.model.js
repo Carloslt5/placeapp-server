@@ -15,31 +15,35 @@ const placeSchema = new Schema(
     placeImg: {
       type: String
     },
-    photoReference: [String],//preguntar si creamos otra propiedad donde guardemos la foto, para no hacer tantas llamadas a la api
+    photoReference: [
+      String
+    ],
     type: {
       enum: ['Night', 'Parks and gardens', 'Bar', 'Restaurant', 'Theatre', 'Cinema', 'Exposition', 'Interest point']
     },
     phone: {
       type: String
     },
-    weekDay: [String],
-    city: {
-      type: String
-    },
-    address: {
-      type: String
-    },
-    location: {
+    weekDay: [
+      String
+    ],
+    addressComponents: {
       type: {
-        type: String
-      },
-      coordinates: [Number]
+        city: String,
+        address: String,
+        location: {
+          type: {
+            type: String
+          },
+          coordinates: [Number]
+        },
+      }
     },
-    myRating: {
+    userRating: {
       type: Number,
       required: [true, 'Rating is required.']
     },
-    myOpinion: {
+    userOpinion: {
       type: String,
       trim: true,
       required: [true, 'Your opinion is required.'],

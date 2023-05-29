@@ -2,9 +2,9 @@ const { Schema, model } = require("mongoose");
 
 const commentSchema = new Schema(
   {
-    text: {
+    content: {
       type: String,
-      required: true,
+      required: [true, 'El comentario es obligatorio'],
       trim: true
     },
     owner: {
