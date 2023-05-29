@@ -42,7 +42,46 @@ router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => 
 
 router.post('/login', (req, res, next) => {
 
-    res.json("SOY api/auth/login")
+   // res.json("SOY api/auth/login")
+
+     // console.log('secretoo', process.env.TOKEN_SECRET)
+
+  const { email, password } = req.body;
+
+  if (email === '' || password === '') {
+    res.status(400).json({ message: "Provide email and password." });
+    return;
+  }
+
+  User
+    .findOne({ email })
+    .then((foundUser) => {
+
+      if (!foundUser) {
+        res.status(401).json({ message: "User not found." })
+        return;
+      }
+
+      if (bcrypt.compareSync(password, foundUser.password)) {
+
+        const { _id, email, name, lastName, avatar } = foundUser; //guardar el avatar
+
+        const payload = { _id, email, name, lastName, avatar }
+
+        const authToken = jwt.sign(
+          payload, //los datos que quieres almacenar
+          process.env.TOKEN_SECRET, //tu variable del .env
+          { algorithm: 'HS256', expiresIn: "6h" }
+        )
+
+        res.json({ authToken: authToken }); //devuelves el token
+      }
+      else {
+        res.status(401).json({ message: "Unable to authenticate the user" });
+      }
+
+    })
+    .catch(err => next(err));
 
 })
 
