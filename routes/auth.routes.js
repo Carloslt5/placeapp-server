@@ -8,9 +8,9 @@ const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const saltRounds = 10
 
 
-router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => {
+router.post('/signup',/* uploaderMiddleware.single('avatar'),*/(req, res, next) => {
 
-    const { path: avatar } = req.file
+    // const { path: avatar } = req.file
     const { name, lastName, email, password } = req.body
 
     User
@@ -25,12 +25,12 @@ router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => 
             const salt = bcrypt.genSaltSync(saltRounds)
             const hashedPassword = bcrypt.hashSync(password, salt)
 
-            return User.create({ name, lastName, email, password: hashedPassword, avatar: req.file?.path })
+            return User.create({ name, lastName, email, password: hashedPassword /*avatar: req.file?.path*/ })
         })
         .then((createdUser) => {
 
-            const { name, lastName, email, avatar, _id } = createdUser
-            const user = { name, lastName, email, avatar, _id }
+            const { name, lastName, email, _id } = createdUser
+            const user = { name, lastName, email, _id }
 
             res.status(201).json({ user })
         })
