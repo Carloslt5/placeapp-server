@@ -47,3 +47,13 @@ Base URL `/api/comments`
 | POST          | `/create `          | Create new comment        |
 | PUT           | `/:id/edit`         | Edit comment              |
 | DELETE        | `/:id/delete `      | Delete comment            |
+
+
+## Cloudinary routes
+
+Base URL `/api/upload`
+
+| METHOD        | URI Path            | Description               |
+|---------------|---------------------|---------------------------|
+| POST          | `/image `           | Upload new image          |
+
