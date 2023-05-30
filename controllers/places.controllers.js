@@ -1,3 +1,5 @@
+const Place = require('./../models/Place.model')
+
 
 const getAllPlaces = (req, res, next) => {
 
@@ -6,7 +8,19 @@ const getAllPlaces = (req, res, next) => {
 }
 const createPlace = (req, res, next) => {
 
-    res.json("PLACES soy /createPlace")
+
+
+
+    const { placeId, name, description, placeImg, photoReference, type,
+        phone, weekDay, addressComponents, userRating, userOpinion, owner, comments } = req.body
+
+    Place
+        .create({
+            placeId, name, description, placeImg, photoReference, type,
+            phone, weekDay, addressComponents, userRating, userOpinion, owner, comments
+        })
+        .then(response => res.json(response))
+        .catch(err => next(err))
 
 }
 const getOnePlace = (req, res, next) => {
@@ -20,7 +34,7 @@ const editPlace = (req, res, next) => {
 
 }
 
-const  addFavouritesPlace = (req, res, next) => {
+const addFavouritesPlace = (req, res, next) => {
 
     res.json("PLACES soy /:id/favourites")
 
