@@ -4,7 +4,7 @@ const createComment = (req, res, next) => {
 
 }
 
-const editComment= (req, res, next) => {
+const editComment = (req, res, next) => {
 
     res.json("soy api/comments/:id/edit")
 
