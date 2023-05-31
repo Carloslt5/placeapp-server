@@ -19,6 +19,7 @@ const placeSchema = new Schema(
       String
     ],
     type: {
+      type: String,
       enum: ['Night', 'Parks and gardens', 'Bar', 'Restaurant', 'Theatre', 'Cinema', 'Exposition', 'Interest point']
     },
     phone: {
