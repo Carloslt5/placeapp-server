@@ -6,7 +6,7 @@ router.get('/getAllPlaces', getAllPlaces)
 
 router.post('/createPlace', createPlace)
 
-router.get('/:id', getOnePlace)
+router.get('/getOnePlace/:id', getOnePlace)
 
 router.put('/:id/edit', editPlace)
 
