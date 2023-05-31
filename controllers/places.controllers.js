@@ -1,5 +1,5 @@
 const Place = require('./../models/Place.model')
-
+const axios = require('axios')
 
 const getAllPlaces = (req, res, next) => {
 
@@ -25,7 +25,21 @@ const createPlace = (req, res, next) => {
 }
 const getOnePlace = (req, res, next) => {
 
-    res.json("PLACES soy /:id`")
+    const { id } = req.params
+    console.log(id)
+
+
+    axios
+        .get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&key=AIzaSyBIip4XUzH0gI5Hs2xkeNp4WCOsrjwHhpk`)
+        .then(({ data }) => {
+
+
+
+
+            res.json(data.result)
+        })
+        .catch(err => next(err))
+
 
 }
 const editPlace = (req, res, next) => {
