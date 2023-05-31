@@ -33,6 +33,7 @@ const getOnePlace = (req, res, next) => {
         .get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&key=AIzaSyBIip4XUzH0gI5Hs2xkeNp4WCOsrjwHhpk`)
         .then(({ data }) => {
 
+            console.log('estos es place_details', data.result)
 
 
 
