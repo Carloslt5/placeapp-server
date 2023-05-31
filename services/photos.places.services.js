@@ -10,7 +10,6 @@ class PhotosPlacesApiHandler {
     }
 
     getPhotosPlaces(photo_reference) {
-        console.log("REFERENCIA DE LA FOTO", photo_reference)
         return this.axiosApp.get(`/photo?maxwidth=500&photo_reference=${photo_reference}&key=${apiKey}`)
     }
 

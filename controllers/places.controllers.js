@@ -13,12 +13,10 @@ const getOnePlace = (req, res, next) => {
 
     const { id } = req.params
 
-    placesApiHandler
+    return placesApiHandler
         .getDetailsPlace(id)
-        .then(({ data: { result } }) => {
-            return result
-        })
-        .then((result) => {
+        .then(({ data: { result } }) => result)
+        .then((placesDetailsResult) => {
 
             const {
                 place_id,
@@ -30,46 +28,39 @@ const getOnePlace = (req, res, next) => {
                 address_components,
                 formatted_address,
                 geometry
-            } = result
+            } = placesDetailsResult
 
-            return place_id
-            
-            photosPlacesApiHandler
-                .getPhotosPlaces(result.photos[0].photo_reference)
-                .then((response)=> {
-                    return cresponse.request.res.responseUrl
-                    // console.log("LA PUTA FOTITO DE LOS COJONES", response.request.res.responseUrl)  
+            return photosPlacesApiHandler
+                .getPhotosPlaces(placesDetailsResult.photos[0].photo_reference)
+                .then((photoPlacesResult) => {
+
+                    const urlPhotoResult = photoPlacesResult.request.res.responseUrl
+
+                    const formattedPlace = {
+                        placeId: place_id || 'data not available',
+                        name: '',
+                        description: editorial_summary?.overview || 'data not available',
+                        placeImg: '',
+                        photoReference: urlPhotoResult || 'data not available',
+                        type: '',
+                        phone: international_phone_number || 'data not available',
+                        weekDay: current_opening_hours?.weekday_text || 'data not available',
+                        city: address_components[2]?.long_name || 'data not available',
+                        address: formatted_address || 'data not available',
+                        latitude: geometry?.location.lat || 'data not available',
+                        longitude: geometry?.location.lng || 'data not available',
+                        userRating: '',
+                        userOpinion: '',
+                        owner: '',
+                        comments: []
+                    }
+
+                    res.json(formattedPlace)
+
                 })
 
         })
         .catch(err => next(err))
-
-        console.log("place id fuera-----", place_id)
-
-            const formattedPlace = {
-                placeId: place_id || 'data not available',
-                name: '',
-                description: editorial_summary?.overview || 'data not available',
-                placeImg: '',
-                photoReference: photos[0].photo_reference || 'data not available',
-                type: '',
-                phone: international_phone_number || 'data not available',
-                weekDay: current_opening_hours?.weekday_text || 'data not available',
-                city: address_components[2]?.long_name || 'data not available',
-                address: formatted_address || 'data not available',
-                latitude: geometry?.location.lat || 'data not available',
-                longitude: geometry?.location.lng || 'data not available',
-                userRating: '',
-                userOpinion: '',
-                owner: '',
-                comments: []
-            }
-
-            res.json(formattedPlace)
-
-
-
-
 
 }
 
@@ -113,8 +104,6 @@ const createPlace = (req, res, next) => {
 
 }
 
-
-
 const editPlace = (req, res, next) => {
 
     res.json("PLACES soy /:id/edit")
@@ -132,7 +121,6 @@ const deletePlace = (req, res, next) => {
     res.json("PLACES soy /:id/delete")
 
 }
-
 
 module.exports = {
     getAllPlaces,
