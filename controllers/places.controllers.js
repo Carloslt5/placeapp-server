@@ -1,6 +1,7 @@
 const Place = require('./../models/Place.model')
 const axios = require('axios')
 const placesApiHandler = require('../services/places.services')
+const photosPlacesApiHandler = require('../services/photos.places.services')
 
 const getAllPlaces = (req, res, next) => {
 
@@ -15,6 +16,9 @@ const getOnePlace = (req, res, next) => {
     placesApiHandler
         .getDetailsPlace(id)
         .then(({ data: { result } }) => {
+            return result
+        })
+        .then((result) => {
 
             const {
                 place_id,
@@ -27,6 +31,20 @@ const getOnePlace = (req, res, next) => {
                 formatted_address,
                 geometry
             } = result
+
+            return place_id
+            
+            photosPlacesApiHandler
+                .getPhotosPlaces(result.photos[0].photo_reference)
+                .then((response)=> {
+                    return cresponse.request.res.responseUrl
+                    // console.log("LA PUTA FOTITO DE LOS COJONES", response.request.res.responseUrl)  
+                })
+
+        })
+        .catch(err => next(err))
+
+        console.log("place id fuera-----", place_id)
 
             const formattedPlace = {
                 placeId: place_id || 'data not available',
@@ -48,8 +66,6 @@ const getOnePlace = (req, res, next) => {
             }
 
             res.json(formattedPlace)
-        })
-        .catch(err => next(err))
 
 }
 
