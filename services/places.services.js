@@ -12,8 +12,6 @@ class PlacesApiHandler {
         return this.axiosApp.get(`details/json?place_id=${place_id}&key=AIzaSyBIip4XUzH0gI5Hs2xkeNp4WCOsrjwHhpk`)
     }
 
-
-
 }
 
 const placesApiHandler = new PlacesApiHandler()

@@ -51,6 +51,10 @@ const getOnePlace = (req, res, next) => {
         })
         .catch(err => next(err))
 
+
+
+
+
 }
 
 const createPlace = (req, res, next) => {
