@@ -4,16 +4,12 @@ module.exports = (app) => {
   });
 
   app.use((err, req, res, next) => {
-    console.error("ERROR", req.method, req.path, err);
+    // console.error("ERROR", req.method, req.path, err);
 
-    //Validation error o unique, mirar videos german e integrarlo para gestion de errores 
-    if (!res.headersSent) {
-      res
-        .status(500)
-        .json({
-          message: "Internal server error. Check the server console",
-        });
+    if (err.name === 'ValidationError') {
+      let errorMessages = Object.values(err.errors).map(el => el.message)
+      res.status(400).json({ errorMessages })
     }
-    
+
   });
 };

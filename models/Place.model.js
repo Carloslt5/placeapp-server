@@ -20,7 +20,8 @@ const placeSchema = new Schema(
     ],
     type: {
       type: String,
-      enum: ['Night', 'Parks and gardens', 'Bar', 'Restaurant', 'Theatre', 'Cinema', 'Exposition', 'Interest point']
+      enum: ['Night', 'Parks and gardens', 'Bar', 'Restaurant', 'Theatre', 'Cinema', 'Exposition', 'Interest point'],
+      required: [true, 'Type is required.']
     },
     phone: {
       type: String
@@ -52,12 +53,12 @@ const placeSchema = new Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
     },
     comments: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Comment'
+        ref: 'Comment',
       }
     ]
 

@@ -96,8 +96,19 @@ const createPlace = (req, res, next) => {
 
     Place
         .create({
-            placeId, name, description, placeImg, photoReference, type,
-            phone, weekDay, addressComponents, userRating, userOpinion, owner, comments
+            placeId,
+            name,
+            description,
+            placeImg,
+            photoReference,
+            type,
+            phone,
+            weekDay,
+            addressComponents,
+            userRating,
+            userOpinion,
+            owner,
+            comments
         })
         .then(response => console.log("Place creado en BBDD con EXITAZO!!!!", response))
         .catch(err => next(err))
