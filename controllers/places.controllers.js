@@ -22,6 +22,18 @@ const getUserPlaces = (req, res, next) => {
 
 }
 
+const getDetailsPlace = (req, res, next) => {
+
+    const { id } = req.params
+    console.log("este es el id desde el BACKEND-------", id)
+
+
+    Place
+    .findById(id)
+    .then(foundPlace => res.json(foundPlace))
+    .catch(err => next(err))
+
+}
 
 const getOnePlace = (req, res, next) => {
 
@@ -150,6 +162,7 @@ const deletePlace = (req, res, next) => {
 module.exports = {
     getAllPlaces,
     getUserPlaces,
+    getDetailsPlace,
     createPlace,
     getOnePlace,
     editPlace,
