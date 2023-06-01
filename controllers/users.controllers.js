@@ -8,20 +8,25 @@ const getAllUsers = (req, res, next) => {
 
 const getOneUser = (req, res, next) => {
 
-     const { id } = req.params;
+    const { id } = req.params;
 
-  User
-    .findById(id)
-    .then(foundUser => res.json(foundUser))
-    .catch(err => next(err));
-
-
+    User
+        .findById(id)
+        .then(foundUser => res.json(foundUser))
+        .catch(err => next(err));
 
 }
 
 const editUser = (req, res, next) => {
 
-    res.json("soy api/users/:id/edit")
+    const { id } = req.params;
+
+    const { name, lastName, email, avatar } = req.body
+
+    User
+        .findByIdAndUpdate(id, { name, lastName, email, avatar })
+        .then(foundUser => res.json(foundUser))
+        .catch(err => next(err));
 
 }
 
