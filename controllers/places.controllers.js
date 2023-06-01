@@ -6,7 +6,10 @@ const photosPlacesApiHandler = require('../services/photos.places.services')
 
 const getAllPlaces = (req, res, next) => {
 
-    res.json("PLACES soy /getAllPlaces")
+    Place
+        .find()
+        .then(foundPlaces => res.json(foundPlaces))
+        .catch(err => next(err))
 
 }
 
@@ -16,9 +19,9 @@ const getUserPlaces = (req, res, next) => {
     const { id } = req.params
 
     Place
-    .find({owner: id })
-    .then(foundPlacesByUser => res.json(foundPlacesByUser))
-    .catch(err => next(err))
+        .find({ owner: id })
+        .then(foundPlacesByUser => res.json(foundPlacesByUser))
+        .catch(err => next(err))
 
 }
 
