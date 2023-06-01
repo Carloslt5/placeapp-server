@@ -6,7 +6,7 @@ const User = require('../models/User.model')
 const signup = (req, res, next) => {
 
 
-    const { name, lastName, email, password, avatar } = req.body
+  const { name, lastName, email, password, avatar } = req.body
 
   User
     .findOne({ email })
@@ -20,12 +20,12 @@ const signup = (req, res, next) => {
       const salt = bcrypt.genSaltSync(saltRounds)
       const hashedPassword = bcrypt.hashSync(password, salt)
 
-            return User.create({ name, lastName, email, password: hashedPassword, avatar })
-        })
-        .then((createdUser) => {
+      return User.create({ name, lastName, email, password: hashedPassword, avatar })
+    })
+    .then((createdUser) => {
 
-            const { name, lastName, email, _id, avatar} = createdUser
-            const user = { name, lastName, email, _id, avatar }
+      const { name, lastName, email, _id, avatar } = createdUser
+      const user = { name, lastName, email, _id, avatar }
 
       res.status(201).json({ user })
     })
@@ -54,9 +54,9 @@ const login = (req, res, next) => {
 
       if (bcrypt.compareSync(password, foundUser.password)) {
 
-        const { _id, name, lastName, email, avatar, role, favouritePlaces} = foundUser;
+        const { _id, name, lastName, email, avatar, role, favouritePlaces } = foundUser;
 
-        const payload = { _id, name, lastName, email, avatar, role, favouritePlaces } 
+        const payload = { _id, name, lastName, email, avatar, role, favouritePlaces }
 
         const authToken = jwt.sign(
           payload,
