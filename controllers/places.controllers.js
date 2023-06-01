@@ -3,11 +3,25 @@ const axios = require('axios')
 const placesApiHandler = require('../services/places.services')
 const photosPlacesApiHandler = require('../services/photos.places.services')
 
+
 const getAllPlaces = (req, res, next) => {
 
     res.json("PLACES soy /getAllPlaces")
 
 }
+
+
+const getUserPlaces = (req, res, next) => {
+
+    const { id } = req.params
+
+    Place
+    .find({owner: id })
+    .then(foundPlacesByUser => res.json(foundPlacesByUser))
+    .catch(err => next(err))
+
+}
+
 
 const getOnePlace = (req, res, next) => {
 
@@ -135,6 +149,7 @@ const deletePlace = (req, res, next) => {
 
 module.exports = {
     getAllPlaces,
+    getUserPlaces,
     createPlace,
     getOnePlace,
     editPlace,

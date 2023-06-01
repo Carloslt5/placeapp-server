@@ -1,8 +1,10 @@
 const router = require("express").Router()
-const { getAllPlaces, createPlace, getOnePlace, editPlace, addFavouritesPlace, deletePlace } = require('../controllers/places.controllers')
+const { getAllPlaces, getUserPlaces, createPlace, getOnePlace, editPlace, addFavouritesPlace, deletePlace } = require('../controllers/places.controllers')
 
 
 router.get('/getAllPlaces', getAllPlaces)
+
+router.get('/:id/getUserPlaces', getUserPlaces)
 
 router.post('/createPlace', createPlace)
 
