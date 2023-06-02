@@ -24,7 +24,7 @@ const editUser = (req, res, next) => {
     const { name, lastName, email, avatar } = req.body
 
     User
-        .findByIdAndUpdate(id, { name, lastName, email, avatar })
+        .findByIdAndUpdate(id, { name, lastName, email, avatar }, { new: true })
         .then(foundUser => res.json(foundUser))
         .catch(err => next(err));
 
