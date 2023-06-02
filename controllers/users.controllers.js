@@ -24,7 +24,7 @@ const editUser = (req, res, next) => {
     const { name, lastName, email, avatar } = req.body
 
     User
-        .findByIdAndUpdate(id, { name, lastName, email, avatar })
+        .findByIdAndUpdate(id, { name, lastName, email, avatar }, { new: true })
         .then(foundUser => res.json(foundUser))
         .catch(err => next(err));
 
@@ -32,11 +32,14 @@ const editUser = (req, res, next) => {
 
 const deleteUser = (req, res, next) => {
 
-    res.json("soy api/users/:id/delete")
+    const { id } = req.params;
+
+    User
+        .findByIdAndDelete(id)
+        .then(() => res.status(204))
+        .catch(err => next(err));
 
 }
-
-
 
 module.exports = {
     getAllUsers,
