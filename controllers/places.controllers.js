@@ -1,13 +1,13 @@
-const Place = require('./../models/Place.model')
-const axios = require('axios')
 const placesApiHandler = require('../services/places.services')
 const photosPlacesApiHandler = require('../services/photos.places.services')
+const Place = require('./../models/Place.model')
 
 
 const getAllPlaces = (req, res, next) => {
 
     Place
         .find()
+        .sort({name: 1})
         .then(foundPlaces => res.json(foundPlaces))
         .catch(err => next(err))
 
@@ -93,8 +93,6 @@ const getOnePlace = (req, res, next) => {
 
 }
 
-
-
 const createPlace = (req, res, next) => {
 
     const {
@@ -170,6 +168,7 @@ const deletePlace = (req, res, next) => {
     res.json("PLACES soy /:id/delete")
 
 }
+
 
 module.exports = {
     getAllPlaces,

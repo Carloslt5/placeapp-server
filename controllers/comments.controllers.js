@@ -15,6 +15,8 @@ const deleteComment = (req, res, next) => {
     res.json("soy api/comments/:id/delete")
 
 }
+
+
 module.exports = {
     createComment,
     editComment,
