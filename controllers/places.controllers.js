@@ -28,11 +28,11 @@ const getUserPlaces = (req, res, next) => {
 const getDetailsPlace = (req, res, next) => {
 
     const { id } = req.params
-    console.log("este es el id desde el BACKEND-------", id)
 
 
     Place
     .findById(id)
+    .populate("owner")
     .then(foundPlace => res.json(foundPlace))
     .catch(err => next(err))
 
