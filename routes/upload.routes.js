@@ -4,7 +4,7 @@ const uploaderMiddleware = require('../middlewares/uploader.middleware')
 
 router.post('/image', uploaderMiddleware.single('imageData'), (req, res) => {
 
-  console.log('esta es la imagen que estoy subiendoASASJCBJASBCJASBCJSAC', imageForm)
+  console.log('ESTOOO es el backkkk')
 
 
   if (!req.file) {
