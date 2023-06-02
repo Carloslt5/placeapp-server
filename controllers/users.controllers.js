@@ -32,11 +32,14 @@ const editUser = (req, res, next) => {
 
 const deleteUser = (req, res, next) => {
 
-    res.json("soy api/users/:id/delete")
+    const { id } = req.params;
+
+    User
+        .findByIdAndDelete(id)
+        .then(() => res.status(204))
+        .catch(err => next(err));
 
 }
-
-
 
 module.exports = {
     getAllUsers,
