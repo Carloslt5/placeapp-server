@@ -7,6 +7,7 @@ const getAllPlaces = (req, res, next) => {
 
     Place
         .find()
+        // TODO: BUSCAR OPCIONES DE PROYECCIÓN EN FIND .select({name: 1, etc....})
         .sort({name: 1})
         .then(foundPlaces => res.json(foundPlaces))
         .catch(err => next(err))

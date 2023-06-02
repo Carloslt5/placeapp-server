@@ -34,6 +34,7 @@ const deleteUser = (req, res, next) => {
 
     const { id } = req.params;
 
+    // TODO: REVISAR TODOS LOS ENDPOINTS RESOLUBLES CON SENDSTATUS
     User
         .findByIdAndDelete(id)
         .then(() => res.sendStatus(204))
