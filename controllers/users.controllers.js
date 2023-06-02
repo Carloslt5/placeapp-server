@@ -36,7 +36,7 @@ const deleteUser = (req, res, next) => {
 
     User
         .findByIdAndDelete(id)
-        .then(() => res.status(204))
+        .then(() => res.sendStatus(204))
         .catch(err => next(err));
 
 }
