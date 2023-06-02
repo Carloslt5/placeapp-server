@@ -6,11 +6,11 @@ router.get('/getAllPlaces', getAllPlaces)
 
 router.get('/:id/getUserPlaces', getUserPlaces)
 
-router.get('/:id/getDetailsPlace', getDetailsPlace)
+router.get('/:id/getDetailsPlace', getDetailsPlace) //con este obtenemos un place de nuestra DB
 
 router.post('/createPlace', createPlace)
 
-router.get('/getOnePlace/:id', getOnePlace)
+router.get('/getOnePlace/:id', getOnePlace) //con este obtenemos un place con detalles y foto de la API de GooglePlaces
 
 router.put('/:id/edit', editPlace)
 

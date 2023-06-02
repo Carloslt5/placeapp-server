@@ -93,6 +93,8 @@ const getOnePlace = (req, res, next) => {
 
 }
 
+
+
 const createPlace = (req, res, next) => {
 
     const {
@@ -146,7 +148,14 @@ const createPlace = (req, res, next) => {
 
 const editPlace = (req, res, next) => {
 
-    res.json("PLACES soy /:id/edit")
+    const { id } = req.params;
+
+    const { type, userRating, userOpinion } = req.body
+
+    Place
+        .findByIdAndUpdate(id, { type, userRating, userOpinion }, { new: true })
+        .then(foundUser => res.json(foundUser))
+        .catch(err => next(err));
 
 }
 
