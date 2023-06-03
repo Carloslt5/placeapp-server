@@ -10,6 +10,11 @@ module.exports = (app) => {
       let errorMessages = Object.values(err.errors).map(el => el.message)
       res.status(400).json({ errorMessages })
     }
+
+    if (err.code && err.code === 11000) {
+      res.status(409).json({ errorMessages: ['El registro ya se encuentra en la base de datos'] })
+    }
+
   })
 
 }

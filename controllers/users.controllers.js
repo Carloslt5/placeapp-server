@@ -2,7 +2,12 @@ const User = require('../models/User.model')
 
 const getAllUsers = (req, res, next) => {
 
-    res.json("soy api/users/getAllUsers")
+    User
+        .find()
+        .select({ name: 1, lastName: 1, avatar: 1, _id: 1 })
+        .sort({ name: 1 })
+        .then(foundUsers => res.json(foundUsers))
+        .catch(err => next(err));
 
 }
 
@@ -33,7 +38,6 @@ const editUser = (req, res, next) => {
 const deleteUser = (req, res, next) => {
 
     const { id } = req.params;
-
     // TODO: REVISAR TODOS LOS ENDPOINTS RESOLUBLES CON SENDSTATUS
     User
         .findByIdAndDelete(id)

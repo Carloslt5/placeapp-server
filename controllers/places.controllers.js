@@ -7,8 +7,7 @@ const getAllPlaces = (req, res, next) => {
 
     Place
         .find()
-        // TODO: BUSCAR OPCIONES DE PROYECCIÓN EN FIND .select({name: 1, etc....})
-        .sort({name: 1})
+        .sort({ name: 1 })
         .then(foundPlaces => res.json(foundPlaces))
         .catch(err => next(err))
 
@@ -32,10 +31,10 @@ const getDetailsPlace = (req, res, next) => {
 
 
     Place
-    .findById(id)
-    .populate("owner")
-    .then(foundPlace => res.json(foundPlace))
-    .catch(err => next(err))
+        .findById(id)
+        .populate("owner")
+        .then(foundPlace => res.json(foundPlace))
+        .catch(err => next(err))
 
 }
 
@@ -160,7 +159,18 @@ const editPlace = (req, res, next) => {
 
 const addFavouritesPlace = (req, res, next) => {
 
-    res.json("PLACES soy /:id/favourites")
+    const { id } = req.params;
+    const { userId } = req.body
+
+    Place
+        .findByIdAndUpdate(id, { $push: { favorites: id } }, { new: true })
+        .then(updateUser => {
+            req.session.currentUser = updateUser
+        })
+        .then(() => res.redirect(`/cocktail-details/${id}`))
+        .catch(err => next(err))
+
+    // res.json("PLACES soy /:id/favourites")
 
 }
 
