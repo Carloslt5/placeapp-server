@@ -154,19 +154,19 @@ const editPlace = (req, res, next) => {
     const { type, userRating, userOpinion, comment } = req.body
 
     Place
-    .findById(id)
-    .then(place => {
-        const existingComments = place.comments || []
+        .findById(id)
+        .then(place => {
+            const existingComments = place.comments || []
 
-        existingComments.push(comment._id)
-        return place.comments
-    })
-    .then(arrComments =>{
-        Place
-            .findByIdAndUpdate(id, { type, userRating, userOpinion, comments: arrComments}, { new: true })
-            .then(updatePlace => res.json(updatePlace))
-            .catch(err => next(err))
-    })
+            existingComments.push(comment._id)
+            return place.comments
+        })
+        .then(arrComments => {
+            Place
+                .findByIdAndUpdate(id, { type, userRating, userOpinion, comments: arrComments }, { new: true })
+                .then(updatePlace => res.json(updatePlace))
+                .catch(err => next(err))
+        })
 
 }
 
@@ -184,7 +184,13 @@ const addFavouritesPlace = (req, res, next) => {
 
 const deletePlace = (req, res, next) => {
 
-    res.json("PLACES soy /:id/delete")
+    const { id } = req.params
+
+    Place
+        .findByIdAndDelete(id)
+        .then(() => res.sendStatus(204))
+        .catch(err => console.log(err));
+
 
 }
 
