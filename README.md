@@ -44,6 +44,7 @@ Base URL `/api/comments`
 
 | METHOD        | URI Path            | Description               |
 |---------------|---------------------|---------------------------|
+| GET           | `/:id `             | Get all comments          |
 | POST          | `/create `          | Create new comment        |
 | PUT           | `/:id/edit`         | Edit comment              |
 | DELETE        | `/:id/delete `      | Delete comment            |

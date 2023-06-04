@@ -148,14 +148,24 @@ const createPlace = (req, res, next) => {
 
 const editPlace = (req, res, next) => {
 
-    const { id } = req.params;
+    const { id } = req.params
 
-    const { type, userRating, userOpinion } = req.body
+    const { type, userRating, userOpinion, comment } = req.body
 
     Place
-        .findByIdAndUpdate(id, { type, userRating, userOpinion }, { new: true })
-        .then(foundUser => res.json(foundUser))
-        .catch(err => next(err));
+    .findById(id)
+    .then(place => {
+        const existingComments = place.comments || []
+
+        existingComments.push(comment._id)
+        return place.comments
+    })
+    .then(arrComments =>{
+        Place
+            .findByIdAndUpdate(id, { type, userRating, userOpinion, comments: arrComments}, { new: true })
+            .then(updatePlace => res.json(updatePlace))
+            .catch(err => next(err))
+    })
 
 }
 
