@@ -17,6 +17,7 @@ const getOneUser = (req, res, next) => {
 
     User
         .findById(id)
+        .populate('favouritePlaces')
         .then(foundUser => res.json(foundUser))
         .catch(err => next(err));
 
