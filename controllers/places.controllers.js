@@ -1,6 +1,8 @@
 const placesApiHandler = require('../services/places.services')
 const photosPlacesApiHandler = require('../services/photos.places.services')
 const Place = require('./../models/Place.model')
+const User = require('./../models/User.model')
+
 
 
 const getAllPlaces = (req, res, next) => {
@@ -159,18 +161,13 @@ const editPlace = (req, res, next) => {
 
 const addFavouritesPlace = (req, res, next) => {
 
-    const { id } = req.params;
-    const { userId } = req.body
+    const { id } = req.params
+    const { _id } = req.body
 
-    Place
-        .findByIdAndUpdate(id, { $push: { favorites: id } }, { new: true })
-        .then(updateUser => {
-            req.session.currentUser = updateUser
-        })
-        .then(() => res.redirect(`/cocktail-details/${id}`))
+    User
+        .findByIdAndUpdate(_id, { $addToSet: { favouritePlaces: id } }, { new: true })
+        .then(() => res.sendStatus(204))
         .catch(err => next(err))
-
-    // res.json("PLACES soy /:id/favourites")
 
 }
 
