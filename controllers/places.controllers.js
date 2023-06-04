@@ -35,6 +35,7 @@ const getDetailsPlace = (req, res, next) => {
     Place
         .findById(id)
         .populate("owner")
+        .populate("comments")
         .then(foundPlace => res.json(foundPlace))
         .catch(err => next(err))
 
