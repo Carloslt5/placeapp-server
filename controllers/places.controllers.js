@@ -158,21 +158,6 @@ const editPlace = (req, res, next) => {
         .then(updatePlace => res.json(updatePlace))
         .catch(err => next(err))
 
-    // Place
-    //     .findById(id)
-    //     .then(place => {
-    //         const existingComments = place.comments || []
-
-    //         existingComments.push(comments._id)
-    //         return place.comments
-    //     })
-    //     .then(arrComments => {
-    //         Place
-    //             .findByIdAndUpdate(id, { type, userRating, userOpinion, comments: arrComments }, { new: true })
-    //             .then(updatePlace => res.json(updatePlace))
-    //             .catch(err => next(err))
-    //     })
-
 }
 
 const addFavouritesPlace = (req, res, next) => {
