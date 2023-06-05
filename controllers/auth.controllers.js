@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const saltRounds = 10
 const User = require('../models/User.model')
 
 
@@ -8,30 +7,11 @@ const signup = (req, res, next) => {
 
   const { name, lastName, email, password, avatar } = req.body
 
-  User
-    .findOne({ email })
-    .then((foundUser) => {
-
-      if (foundUser) {
-        res.status(400).json({ message: "User already exists." })
-        return
-      }
-
-      const salt = bcrypt.genSaltSync(saltRounds)
-      const hashedPassword = bcrypt.hashSync(password, salt)
-
-      return User.create({ name, lastName, email, password: hashedPassword, avatar })
-
-    })
-    .then((createdUser) => {
-
-      const { name, lastName, email, _id, avatar } = createdUser
-      const user = { name, lastName, email, _id, avatar }
-
-      res.status(201).json({ user })
-
-    })
+     User
+    .create({ name, lastName, email, password, avatar })
+    .then(() => res.sendStatus(201))
     .catch(err => next(err))
+    
 }
 
 
