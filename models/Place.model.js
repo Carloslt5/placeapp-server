@@ -68,6 +68,11 @@ const placeSchema = new Schema(
   }
 );
 
+placeSchema.statics.checkOwnerForPlace = function(userId, placeId){
+  return this.count({$and: [ {_id: placeId}, {owner: userId}]})
+}
+
+
 const Place = model("Place", placeSchema);
 
 module.exports = Place;

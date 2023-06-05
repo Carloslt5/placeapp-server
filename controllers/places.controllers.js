@@ -31,7 +31,6 @@ const getDetailsPlace = (req, res, next) => {
 
     const { id } = req.params
 
-
     Place
         .findById(id)
         .populate("owner")
@@ -142,7 +141,7 @@ const createPlace = (req, res, next) => {
             owner,
             comments
         })
-        .then(response => console.log("Place creado en BBDD con EXITAZO!!!!", response))
+        .then(response => res.sendStatus(204))
         .catch(err => next(err))
 
 }
@@ -150,13 +149,22 @@ const createPlace = (req, res, next) => {
 const editPlace = (req, res, next) => {
 
     const { id } = req.params
-
     const { type, userRating, userOpinion } = req.body
 
-    Place
-        .findByIdAndUpdate(id, { type, userRating, userOpinion }, { new: true })
-        .then(updatePlace => res.json(updatePlace))
-        .catch(err => next(err))
+    //const { placeOwnerCount: isOwnerPlace } = req
+
+    // if(isOwnerPlace === 0){
+    //     res.redirect("http://localhost:3000")
+    // }else{
+
+        Place
+            .findByIdAndUpdate(id, { type, userRating, userOpinion }, { new: true })
+            .then(updatePlace => res.json( updatePlace ))
+            .catch(err => next(err))
+    // }
+
+    
+
 
 }
 
