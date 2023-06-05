@@ -151,23 +151,27 @@ const editPlace = (req, res, next) => {
 
     const { id } = req.params
 
-     const { type, userRating, userOpinion, comment } = req.body
-    console.log("creq.body-------------", req.body)
+    const { type, userRating, userOpinion } = req.body
 
     Place
-        .findById(id)
-        .then(place => {
-            const existingComments = place.comments || []
+        .findByIdAndUpdate(id, { type, userRating, userOpinion }, { new: true })
+        .then(updatePlace => res.json(updatePlace))
+        .catch(err => next(err))
 
-            existingComments.push(comment._id)
-            return place.comments
-        })
-        .then(arrComments => {
-            Place
-                .findByIdAndUpdate(id, { type, userRating, userOpinion, comments: arrComments }, { new: true })
-                .then(updatePlace => res.json(updatePlace))
-                .catch(err => next(err))
-        })
+    // Place
+    //     .findById(id)
+    //     .then(place => {
+    //         const existingComments = place.comments || []
+
+    //         existingComments.push(comments._id)
+    //         return place.comments
+    //     })
+    //     .then(arrComments => {
+    //         Place
+    //             .findByIdAndUpdate(id, { type, userRating, userOpinion, comments: arrComments }, { new: true })
+    //             .then(updatePlace => res.json(updatePlace))
+    //             .catch(err => next(err))
+    //     })
 
 }
 
