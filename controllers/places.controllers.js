@@ -151,7 +151,8 @@ const editPlace = (req, res, next) => {
 
     const { id } = req.params
 
-    const { type, userRating, userOpinion, comment } = req.body
+     const { type, userRating, userOpinion, comment } = req.body
+    console.log("creq.body-------------", req.body)
 
     Place
         .findById(id)
