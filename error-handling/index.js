@@ -15,6 +15,9 @@ module.exports = (app) => {
       res.status(409).json({ errorMessages: ['El registro ya se encuentra en la base de datos'] })
     }
 
+    if (!res.headersSent) {
+      res.status(500).json({ errorMessages: ['Se ha producido un error en servidor.'] })
+    }
   })
 
 }

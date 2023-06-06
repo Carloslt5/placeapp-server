@@ -7,11 +7,11 @@ const signup = (req, res, next) => {
 
   const { name, lastName, email, password, avatar } = req.body
 
-     User
-    .create({ name, lastName, email, password, avatar })
-    .then(() => res.sendStatus(201))
-    .catch(err => next(err))
-    
+    User
+   .create({ name, lastName, email, password, avatar })
+   .then(() => res.sendStatus(201))
+   .catch(err => next(err))
+
 }
 
 
@@ -20,7 +20,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body
 
   if (email === '' || password === '') {
-    res.status(400).json({ message: "Provide email and password." })
+    res.status(400).json({ errorMessages: ["Provide email and password."] })
     return
   }
 
@@ -29,7 +29,7 @@ const login = (req, res, next) => {
     .then((foundUser) => {
 
       if (!foundUser) {
-        res.status(401).json({ message: "User not found." })
+        res.status(401).json({ errorMessages: ["User not found."] })
         return
       }
 
@@ -48,7 +48,7 @@ const login = (req, res, next) => {
         res.json({ authToken: authToken })
 
       } else {
-        res.status(401).json({ message: "Unable to authenticate the user" })
+        res.status(401).json({ errorMessages: ["Unable to authenticate the user"] })
       }
 
     })

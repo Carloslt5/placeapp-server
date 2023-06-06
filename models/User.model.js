@@ -57,6 +57,10 @@ userSchema.pre('save', function (next) {
   next()
 })
 
+userSchema.statics.checkOwnerForUser = function(userId, profileId){
+  return this.count({ $and: [{ _id: userId }, { _id: profileId}]})
+}
+
 const User = model("User", userSchema);
 
 module.exports = User;
