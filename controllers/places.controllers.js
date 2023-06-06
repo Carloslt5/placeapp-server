@@ -154,16 +154,14 @@ const editPlace = (req, res, next) => {
     //const { placeOwnerCount: isOwnerPlace } = req
 
     // if(isOwnerPlace === 0){
-    //     res.redirect("http://localhost:3000")
+    //     res.redirect("/")
     // }else{
 
-        Place
-            .findByIdAndUpdate(id, { type, userRating, userOpinion }, { new: true })
-            .then(updatePlace => res.json( updatePlace ))
-            .catch(err => next(err))
+    Place
+        .findByIdAndUpdate(id, { type, userRating, userOpinion }, { new: true })
+        .then(updatePlace => res.json(updatePlace))
+        .catch(err => next(err))
     // }
-
-    
 
 
 }
