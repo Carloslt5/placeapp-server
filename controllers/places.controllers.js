@@ -170,6 +170,18 @@ const addFavouritesPlace = (req, res, next) => {
 
 }
 
+const removefavouritesPlace = (req, res, next) => {
+
+    const { id } = req.params
+    const { _id } = req.body
+
+    User
+        .findByIdAndUpdate(_id, { $pull: { favouritePlaces: id } }, { new: true })
+        .then(() => res.sendStatus(204))
+        .catch(err => next(err))
+
+}
+
 const deletePlace = (req, res, next) => {
 
     const { id } = req.params
@@ -191,5 +203,6 @@ module.exports = {
     getOnePlace,
     editPlace,
     addFavouritesPlace,
+    removefavouritesPlace,
     deletePlace
 }

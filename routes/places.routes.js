@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const { isAuthenticated } = require("../middlewares/verifyToken.middleware")
-const { getAllPlaces, getUserPlaces, getDetailsPlace, createPlace, getOnePlace, editPlace, addFavouritesPlace, deletePlace } = require('../controllers/places.controllers')
+const { getAllPlaces, getUserPlaces, getDetailsPlace, createPlace, getOnePlace, editPlace, addFavouritesPlace, removefavouritesPlace, deletePlace } = require('../controllers/places.controllers')
 const { checkPlaceOwner } = require("../middlewares/checkPlaceOwner")
 
 
@@ -18,7 +18,9 @@ router.get('/getOnePlace/:id', getOnePlace)
 
 router.put('/:id/edit', isAuthenticated, checkPlaceOwner, editPlace)
 
-router.put('/:id/favourites', addFavouritesPlace)
+router.put('/:id/addfavourites', addFavouritesPlace)
+
+router.put('/:id/removefavourites', removefavouritesPlace)
 
 router.delete('/:id/delete', deletePlace)
 
