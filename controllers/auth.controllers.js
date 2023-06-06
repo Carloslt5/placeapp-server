@@ -35,9 +35,9 @@ const login = (req, res, next) => {
 
       if (bcrypt.compareSync(password, foundUser.password)) {
 
-        const { _id, name, lastName, email, avatar, role, favouritePlaces } = foundUser
+        const { _id, name, lastName, email, role } = foundUser
 
-        const payload = { _id, name, lastName, email, avatar, role, favouritePlaces }
+        const payload = { _id, name, lastName, email, role }
 
         const authToken = jwt.sign(
           payload,

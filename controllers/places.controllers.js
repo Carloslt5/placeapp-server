@@ -2,6 +2,7 @@ const placesApiHandler = require('../services/places.services')
 const photosPlacesApiHandler = require('../services/photos.places.services')
 const Place = require('./../models/Place.model')
 const User = require('./../models/User.model')
+const Comment = require('./../models/Comment.model')
 
 
 
@@ -186,10 +187,22 @@ const deletePlace = (req, res, next) => {
 
     const { id } = req.params
 
-    Place
+        Place
         .findByIdAndDelete(id)
-        .then(() => res.sendStatus(204))
+        .then((deletePlace) => deletePlace)
+        .then((deletePlace) => {
+
+            deletePlace.comments.map((commentId)=> {
+               Comment
+                   .findByIdAndDelete(commentId)
+                   .then((result) => result)
+                   .catch(err => next(err))
+            })
+        })
+        .then((result) => res.sendStatus(204))
         .catch(err => console.log(err));
+
+    
 
 
 }
