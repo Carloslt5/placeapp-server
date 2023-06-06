@@ -1,7 +1,6 @@
 const router = require("express").Router()
 const { getAllUsers, getOneUser, editUser, deleteUser } = require('../controllers/users.controllers')
 const { isAuthenticated } = require("../middlewares/verifyToken.middleware")
-
 const { checkUserOwner } = require("../middlewares/checkUserOwner")
 
 
