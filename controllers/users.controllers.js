@@ -32,7 +32,7 @@ const editUser = (req, res, next) => {
     User
         .findByIdAndUpdate(id, { name, lastName, email, avatar }, { new: true })
         .then(foundUser => res.json(foundUser))
-        .catch(err => next(err));
+        .catch(err => next(err))
 
 }
 
