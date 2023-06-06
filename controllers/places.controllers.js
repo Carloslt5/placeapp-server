@@ -2,6 +2,7 @@ const placesApiHandler = require('../services/places.services')
 const photosPlacesApiHandler = require('../services/photos.places.services')
 const Place = require('./../models/Place.model')
 const User = require('./../models/User.model')
+const Comment = require('./../models/Comment.model')
 
 
 
@@ -188,7 +189,9 @@ const deletePlace = (req, res, next) => {
 
     Place
         .findByIdAndDelete(id)
-        .then(() => res.sendStatus(204))
+        .then(() => {
+
+        })
         .catch(err => console.log(err));
 
 
