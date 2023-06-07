@@ -1,6 +1,5 @@
 
 const Place = require('../models/Place.model')
-//const Comment = require('./../models/Comment.model')
 const User = require('./../models/User.model')
 const { getCommonPlacesId } = require('../utils/GetCommonPlaces.helpers')
 

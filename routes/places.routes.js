@@ -8,21 +8,19 @@ router.get('/getAllPlaces', getAllPlaces)
 
 router.get('/:id/getUserPlaces', getUserPlaces)
 
-//Obtenemos place de NUESTRA BBDD
-router.get('/:id/getDetailsPlace', getDetailsPlace)
+router.get('/:id/getDetailsPlace', isAuthenticated, getDetailsPlace)
 
-router.post('/createPlace', createPlace)
+router.post('/createPlace', isAuthenticated, createPlace)
 
-//Obtenemos place de la API DE GOOGLE PLACES
-router.get('/getOnePlace/:id', getOnePlace)
+router.get('/getOnePlace/:id', isAuthenticated, getOnePlace)
 
 router.put('/:id/edit', isAuthenticated, checkPlaceOwner, editPlace)
 
-router.put('/:id/addfavourites', addFavouritesPlace)
+router.put('/:id/addfavourites', isAuthenticated, addFavouritesPlace)
 
-router.put('/:id/removefavourites', removefavouritesPlace)
+router.put('/:id/removefavourites', isAuthenticated, removefavouritesPlace)
 
-router.delete('/:id/delete', deletePlace)
+router.delete('/:id/delete', isAuthenticated, deletePlace)
 
 
 module.exports = router

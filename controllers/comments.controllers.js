@@ -5,16 +5,6 @@ const Comment = require('./../models/Comment.model')
 
 const getAllComments = (req, res, next) => {
 
-    // const { id } = req.params
-
-    // Place
-    // .findById(id)
-    // .select({comments : 1})
-    // .populate("comments")
-    // .then(response => console.log("RESPUESTA DEL BACKEND---->", response))
-    // .catch(err => next(err))
-
-
     res.json("soy api/comments/:id")
 
 }

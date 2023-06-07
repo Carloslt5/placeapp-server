@@ -12,11 +12,11 @@ module.exports = (app) => {
     }
 
     if (err.code && err.code === 11000) {
-      res.status(409).json({ errorMessages: ['El registro ya se encuentra en la base de datos'] })
+      res.status(409).json({ errorMessages: ['409 - The registration is already in the database.'] })
     }
 
     if (!res.headersSent) {
-      res.status(500).json({ errorMessages: ['Se ha producido un error en servidor.'] })
+      res.status(500).json({ errorMessages: ['500 - Internal Server Error'] })
     }
   })
 

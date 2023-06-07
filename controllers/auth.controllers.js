@@ -5,12 +5,12 @@ const User = require('../models/User.model')
 
 const signup = (req, res, next) => {
 
-  const { name, lastName, email, password, avatar } = req.body
+  const { name, lastName, email, password, avatar} = req.body
 
     User
    .create({ name, lastName, email, password, avatar })
    .then(() => res.sendStatus(201))
-   .catch(err => next(err))
+   .catch(err => res.sendStatus(500))
 
 }
 
@@ -52,7 +52,7 @@ const login = (req, res, next) => {
       }
 
     })
-    .catch(err => next(err))
+    .catch(err => res.sendStatus(500))
 
 }
 
