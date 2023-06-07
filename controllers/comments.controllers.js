@@ -27,7 +27,7 @@ const editComment = (req, res, next) => {
     Comment
         .findByIdAndUpdate(commentId, { content: commentData }, { new: true })
         .then(foundComment => res.json(foundComment))
-        .catch(err => next(err));
+        .catch(err => next(err))
 
 }
 
@@ -51,7 +51,7 @@ const deleteComment = (req, res, next) => {
     Comment
         .findByIdAndDelete(id)
         .then(() => res.sendStatus(204))
-        .catch(err => next(err));
+        .catch(err => next(err))
 
 }
 

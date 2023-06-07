@@ -7,25 +7,25 @@ const getAllUsers = (req, res, next) => {
         .select({ name: 1, lastName: 1, avatar: 1, _id: 1 })
         .sort({ name: 1 })
         .then(foundUsers => res.json(foundUsers))
-        .catch(err => next(err));
+        .catch(err => next(err))
 
 }
 
 const getOneUser = (req, res, next) => {
 
-    const { id } = req.params;
+    const { id } = req.params
 
     User
         .findById(id)
         .populate('favouritePlaces')
         .then(foundUser => res.json(foundUser))
-        .catch(err => next(err));
+        .catch(err => next(err))
 
 }
 
 const editUser = (req, res, next) => {
 
-    const { id } = req.params;
+    const { id } = req.params
 
     const { name, lastName, email, avatar } = req.body
 
@@ -38,11 +38,11 @@ const editUser = (req, res, next) => {
 
 const deleteUser = (req, res, next) => {
 
-    const { id } = req.params;
+    const { id } = req.params
     User
         .findByIdAndDelete(id)
         .then(() => res.sendStatus(204))
-        .catch(err => next(err));
+        .catch(err => next(err))
 
 }
 

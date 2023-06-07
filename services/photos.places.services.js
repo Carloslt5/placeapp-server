@@ -1,5 +1,5 @@
 const axios = require('axios')
-const apiKey = process.env.GOOGLE_API_KEY;
+const apiKey = process.env.GOOGLE_API_KEY
 
 class PhotosPlacesApiHandler {
 

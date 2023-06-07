@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const placeSchema = new Schema(
   {
@@ -66,13 +66,13 @@ const placeSchema = new Schema(
   {
     timestamps: true
   }
-);
+)
 
 placeSchema.statics.checkOwnerForPlace = function(userId, placeId){
   return this.count({$and: [ {_id: placeId}, {owner: userId}]})
 }
 
 
-const Place = model("Place", placeSchema);
+const Place = model("Place", placeSchema)
 
-module.exports = Place;
+module.exports = Place

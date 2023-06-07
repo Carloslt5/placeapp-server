@@ -200,7 +200,7 @@ const deletePlace = (req, res, next) => {
             })
         })
         .then((result) => res.sendStatus(204))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
 
     
 

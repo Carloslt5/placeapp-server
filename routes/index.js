@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const router = require("express").Router()
 
 router.use("/places", require('./places.routes'))
 router.use("/users", require('./users.routes'))
