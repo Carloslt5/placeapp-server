@@ -22,10 +22,10 @@ const createComment = (req, res, next) => {
 
 const editComment = (req, res, next) => {
 
-    const { commentId, commentData } = req.body
+    const { commentId, commentData: content } = req.body
 
     Comment
-        .findByIdAndUpdate(commentId, { content: commentData }, { new: true })
+        .findByIdAndUpdate(commentId, { content }, { new: true })
         .then(foundComment => res.json(foundComment))
         .catch(err => next(err))
 
