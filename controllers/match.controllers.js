@@ -2,6 +2,7 @@
 const Place = require('../models/Place.model')
 //const Comment = require('./../models/Comment.model')
 const User = require('./../models/User.model')
+const { getCommonPlacesId } = require('../utils/GetCommonPlaces.helpers')
 
 
 const getMatchPlaces = (req, res, next) => {
@@ -16,23 +17,16 @@ const getMatchPlaces = (req, res, next) => {
 
             const arrOne = result[0].favouritePlaces.map(placeId => placeId.toString())
             const arrTwo = result[1].favouritePlaces.map(placeId => placeId.toString())
-
             const commonPlaces = arrOne.filter(placeId => arrTwo.includes(placeId))
 
-            const promises = commonPlaces.map(place => {
-                return Place.findById(place).then(result => result)
-            })
+            const eachPlaceId = getCommonPlacesId(commonPlaces)
 
-            return Promise.all(promises)
+            return Promise.all(eachPlaceId)
 
         })
-        .then((results) => {
-            console.log('SEGUNDO THENNN', results)
-            res.json({ results })
-        })
+        .then((eachPlace) => res.json(eachPlace))
         .catch(err => next(err))
 
-    res.json('ESTOY EN EL MATCH')
 
 }
 
