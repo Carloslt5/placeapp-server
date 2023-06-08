@@ -6,5 +6,6 @@ router.use("/auth", require('./auth.routes'))
 router.use("/comments", require('./comments.routes'))
 router.use("/upload", require('./upload.routes'))
 router.use("/match", require('./match.routes'))
+router.use("/groups", require('./groups.routes'))
 
 module.exports = router
