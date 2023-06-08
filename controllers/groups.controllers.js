@@ -28,16 +28,19 @@ const createGroup = (req, res, next) => {
 
     Group
         .create({ name, description, owner })
-        .then(createdGroup => res.sendStatus(201))
+        .then(createdGroup => res.json(createdGroup))
         .catch(err => next(err))
 
 }
 
 const joinGroup = (req, res, next) => {
 
+
     const { id: groupId } = req.params
     const { _id: userId } = req.payload
 
+    console.log("ID DE GRUPO", groupId)
+    console.log("ID DE USER", userId)
 
     Group
         .findByIdAndUpdate(groupId, { $addToSet: { members: userId } }, { new: true })
