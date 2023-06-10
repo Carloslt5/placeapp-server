@@ -50,6 +50,19 @@ Base URL `/api/comments`
 | DELETE        | `/:id/delete `      | Delete comment            |
 
 
+## Groups routes
+
+Base URL `/api/groups`
+
+| METHOD        | URI Path            | Description               |
+|---------------|---------------------|---------------------------|
+| GET           | `/`                 | Get all groups            |
+| GET           | `/:id `             | Get one group             |
+| POST          | `/create`           | Create group              |
+| PUT           | `/:id/join `        | Join group                |
+| POST          | `/:id/unjoin `      | Unjoin group              |
+| DELETE        | `/:id/delete `      | Delete group              |
+
 ## Cloudinary routes
 
 Base URL `/api/upload`

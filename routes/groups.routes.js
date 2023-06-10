@@ -8,7 +8,7 @@ router.get('/:id', getOneGroup)
 router.post('/create', createGroup)
 router.put('/:id/join', isAuthenticated, joinGroup)
 router.put('/:id/unjoin', isAuthenticated, unjoinGroup)
-router.delete('/:id/edit', deleteGroup)
+router.delete('/:id/delete', deleteGroup)
 
 
 module.exports = router
