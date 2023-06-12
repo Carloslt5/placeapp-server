@@ -7,5 +7,6 @@ router.use("/comments", require('./comments.routes'))
 router.use("/upload", require('./upload.routes'))
 router.use("/match", require('./match.routes'))
 router.use("/groups", require('./groups.routes'))
+router.use("/chat", require('./chats.routes'))
 
 module.exports = router
