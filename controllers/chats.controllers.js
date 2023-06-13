@@ -7,7 +7,7 @@ const getAllMessages = (req, res, next) => {
     Message
         .find()
         .sort({createdAt: -1})
-        .limit(10)
+        .limit(20)
         .populate('owner')
         .then(messages => res.json(messages))
         .catch(err => next(err))
